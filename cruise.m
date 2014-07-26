@@ -62,8 +62,8 @@ T = feedback(C*P_cruise,1);
 step(r*T,t)
 % axis([0 20 0 10])
 
-Kp = 500;
-Ki = 1;
+Kp = 1000;
+Ki = 50;
 Kd = 1;
 C = pid(Kp,Ki,Kd);
 
