@@ -38,6 +38,7 @@ load_data
 function load_data()
 %------Load data of Challenge A---------%
 handles.data = load('data_gui_08.mat')
+% print('-depsc', handles.data)
 
 handles.filter_a = handles.data.filter(1);
 handles.filter_tau = handles.data.filter(2);
