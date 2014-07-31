@@ -1,0 +1,27 @@
+handles = 
+
+              data: [1x1 struct]
+          filter_a: 6.1360e-05
+        filter_tau: 94.1404
+            gain_a: 3.6675e-04
+            gain_b: -0.0168
+            gain_c: -1.6182
+    nu_0_threshold: -41.4561
+     tau_threshold: 1.1721e+03
+    nu_1_threshold: 2.6385
+          mean_g_e: []
+           std_g_e: []
+          mean_g_i: []
+           std_g_i: []
+           int_rel: []
+       coincidence: []
+            result: []
+               g_e: []
+               g_i: []
+                 V: []
+        spiketimes: []
+             V_srm: []
+            filter: []
+              gain: []
+         threshold: []
+       coinc_spike: []
