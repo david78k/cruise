@@ -117,12 +117,12 @@ nu_1 = threshold(3);
 
 
 function [spiketimes] = Extract_spiketimes(voltage, sampling_freq)
-%   sampling_freq is used to caculate the period refractory around
+%   sampling_freq is useful for the caculate te  réfractaire about
 %   0.8 ms to detect any spikes.
 %   limit_t_refr = floor(0.8*(sampling_freq*1e-3))
 %   extract the spiketimes a trace. spiketimes(:,1) = spiketimes
-%   the spiketimes are detected in zéros upward crossing
-%   spiketimes(:,2) = max voltage of the spike, used for the plotter the detection
+%   in the spiketimes are detecté en zéros upward crossing
+%   spiketimes(:,2) = max voltage of the spike, usefule for the plotter la détection
 %   of spikes.
 %   spiketimes(:,3) = ISI, useful for eta dependent the last isi;
 
@@ -135,11 +135,11 @@ spiketimes_t(1,1) = 0;
 spiketimes_t(1,2) = 0;
 spiketimes_t(1,3) = 0;
 
-for i=1:length(voltage)-6          %loop the voltage
+for i=1:length(voltage)-6          %parcours le voltage
     if(voltage(i) >= limite && voltage_prime(i) > 0 && t_refr >= limit_t_refr)
         k = k+1;
         t_refr = 0;
-        spiketimes_t(k,2) = max(voltage(i:i+5)); % 1 takes on the max [ms]
+        spiketimes_t(k,2) = max(voltage(i:i+5)); % prend le max sur 1 [ms]
         spiketimes_t(k,1) = i;
         spiketimes_t(k,3) = spiketimes_t(k,1)-spiketimes_t(k-1,1);
     else
@@ -147,7 +147,7 @@ for i=1:length(voltage)-6          %loop the voltage
     end
 end
 
-spiketimes_t(:,1) = spiketimes_t(:,1)-1;    %detect the zéros crossing, if the detection t after
+spiketimes_t(:,1) = spiketimes_t(:,1)-1;    %détecte le zéros crossing, sinon détecter le t d'apr?s
 
 spiketimes(:,1) = spiketimes_t(2:end,1);
 spiketimes(:,2) = spiketimes_t(2:end,2);
