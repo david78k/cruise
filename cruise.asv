@@ -71,24 +71,24 @@ handles.threshold = [];
 handles.coinc_spike = []
 %---------------------------------------%
 
-val = 2;
 handles.g_e = handles.data.g_e(:,val);
-handles.g_i = handles.data.g_i(:,val);
-handles.V = handles.data.v(:,val);
-handles.mean_g_e = mean(handles.g_e);
-handles.std_g_e = std(handles.g_e);
-handles.mean_g_i = mean(handles.g_i);
-handles.std_g_i = std(handles.g_i);
-handles.int_rel = handles.data.int_rel(val);
-handles.spiketimes = Extract_spiketimes(handles.V,10000);
-
-handles.temp = 0:0.1:(length(handles.V)-1)*0.1;
-% axes(handles.srm_vs_data_axes);
-cla;
-plot(handles.temp, handles.V);
-xlabel('time [ms]');
-ylabel('Voltage [mV]');
-axis tight;
+    handles.g_i = handles.data.g_i(:,val);
+    handles.V = handles.data.v(:,val);
+    handles.mean_g_e = mean(handles.g_e);
+    handles.std_g_e = std(handles.g_e);
+    handles.mean_g_i = mean(handles.g_i);
+    handles.std_g_i = std(handles.g_i);
+    handles.int_rel = handles.data.int_rel(val);
+    handles.spiketimes = Extract_spiketimes(handles.V,10000);
+    
+    
+    handles.temp = 0:0.1:(length(handles.V)-1)*0.1;
+    axes(handles.srm_vs_data_axes);
+    cla;
+    plot(handles.temp, handles.V);
+    xlabel('time [ms]');
+    ylabel('Voltage [mV]');
+    axis tight;
     
 % call SRM 
 handles.filter = [handles.filter_a handles.filter_tau];
@@ -97,30 +97,30 @@ handles.threshold = [handles.nu_0_threshold handles.tau_threshold handles.nu_1_t
 [handles.V_srm handles.V_srm_spiketimes handles.thres] = ...
     adapt_gain_dif(handles.g_e,handles.g_i,handles.filter,handles.gain,10000,handles.threshold);
 [handles.coincidence handles.coinc_spike] = GamCoincFac(handles.V_srm_spiketimes, handles.spiketimes, 10000);
-handles.result = handles.coincidence/handles.int_rel;
+% handles.result = handles.coincidence/handles.int_rel;
 % set(handles.coincidence_edit,'String',num2str(handles.coincidence));
 % set(handles.result_edit,'String',num2str(handles.result));
 
 handles.temp = 0:0.1:(length(handles.data.v)-1)*0.1
 % axes(handles.srm_vs_data_axes);
-handles.V_srm;
+handles.V_srm
 cla;
 hold on;
-plot(handles.temp, handles.V);
+% plot(handles.temp, handles.V);
 %plot(handles.temp, handles.V_srm,'r');
 
 X = handles.temp(1:900);
-Y = handles.V_srm(1:900);
-p = plot(X(1:900),Y(1:900),'-r','EraseMode','none');
+% Y = handles.V_srm(1:900);
+% p = plot(X(1:900),Y(1:900),'-r','EraseMode','none');
 
 for t=901:900:length(handles.temp);
     X = handles.temp(t-900:t);
-    Y = handles.V_srm(t-900:t);
+%     Y = handles.V_srm(t-900:t);
 %     set(p,'XData',X,'YData',Y) 
     drawnow
 end
-plot(handles.temp, handles.V_srm,'r');
-plot(handles.temp, handles.thres,'k');
+% plot(handles.temp, handles.V_srm,'r');
+% plot(handles.temp, handles.thres,'k');
 xlabel('time [ms]');
 ylabel('U [mV]');
 axis tight;
